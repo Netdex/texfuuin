@@ -1,0 +1,17 @@
+.thread {
+
+}
+
+.thread .post-user {
+    color: forestgreen;
+    font-weight: 900;
+}
+
+.thread .post-title {
+    color: darkblue;
+    font-weight: 700;
+}
+
+.thread .post-title-nav {
+    float: right;
+}
