@@ -7,6 +7,14 @@
     font-weight: 900;
 }
 
+.thread .post-user .trip {
+    color: blue;
+}
+
+.thread .post-user .trip.trip-admin {
+    color: red;
+}
+
 .thread .post-title {
     color: darkblue;
     font-weight: 700;

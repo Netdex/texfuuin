@@ -1,3 +1,5 @@
+{% from 'tripcode.html' import tripcode %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +27,7 @@
 </nav>
 
 <div class="container">
-    {% for thread in threads %}
+    {% for thread in threads | reverse %}
         <div class="thread my-4">
             <div class="card">
                 <div class="card-body">
@@ -36,7 +38,7 @@
                         </span>
                     </h5>
                     <h6 class="card-subtitle">
-                        <span class="post-user mr-4">{{ thread.user }}</span>
+                        <span class="post-user mr-4">{{ tripcode(thread.user, thread.tripcode, config.admin_trip) }}</span>
                         <span class="post-datetime text-muted">{{ thread.datetime }}</span>
                     </h6>
                     <p class="card-text post-message">{{ thread.message }}</p>
@@ -47,7 +49,7 @@
                         <li class="list-group-item">
                             <div class="card-text">
                                 <h6>
-                                    <span class="post-user mr-4">{{ reply.user }}</span>
+                                    <span class="post-user mr-4">{{ tripcode(reply.user, reply.tripcode, config.admin_trip) }}</span>
                                     <span class="post-datetime text-muted">{{ reply.datetime }}</span>
                                 </h6>
                                 <span class="post-message">{{ reply.message }}</span>
