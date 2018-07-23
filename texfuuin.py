@@ -27,11 +27,17 @@ def rt_edit():
     post_obj = db.get_post_by_id(post_id)
     if not post_obj:
         return redirect(url_for('rt_post', error='post-id'))
+
+    # find uppermost thread of current post
+    parent_thread = uuid.UUID(post_obj['parent']) if post_obj.get('parent') else post_id
     if post_obj['tripcode'] != triphash(u_tripcode):
-        # show parent post if it exists
         return redirect(url_for('rt_post',
-                                post_id=uuid.UUID(post_obj['parent']) if post_obj.get('parent') else post_id,
+                                post_id=parent_thread,
                                 error='no-auth'))
+
+    captcha_resp = request.form.get('g-recaptcha-response')
+    if not validation.validate_captcha(captcha_resp):
+        return redirect(url_for('rt_post', error='captcha', post_id=parent_thread))
 
     # do action based on form param
     if u_action == 'delete':
@@ -46,6 +52,10 @@ def rt_edit():
 @app.route('/new', methods=['POST'])
 @app.route('/new/<uuid:post_id>', methods=['POST'])
 def rt_new(post_id=None):
+    captcha_resp = request.form.get('g-recaptcha-response')
+    if not validation.validate_captcha(captcha_resp):
+        return redirect(url_for('rt_post', error='captcha', post_id=post_id))
+
     post_obj = post.new_post(
         user=request.form.get('user'),
         message=request.form.get('message'),

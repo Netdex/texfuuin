@@ -8,12 +8,16 @@
             <form action="{{ url_for('rt_edit') }}" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="tripcode" class="col-form-label">Tripcode:</label>
+                        <label for="tripcode" class="col-form-label">Tripcode</label>
                         <input type="text" class="form-control" id="tripcode" name="tripcode">
                     </div>
                     <div class="form-group" hidden>
                         <label for="postid" class="col-form-label"></label>
                         <input type="text" class="form-control" id="postid" name="postid">
+                    </div>
+                    <div class="form-group">
+                        <label for="recaptcha">Captcha</label>
+                        <div class="g-recaptcha" data-sitekey="{{ config['recaptcha-sitekey'] }}"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -27,11 +31,9 @@
 
 <script>
     $('#modal-edit').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var postid = button.data('postid') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-body #postid').val(postid)
+        var button = $(event.relatedTarget);
+        var postid = button.data('postid');
+        var modal = $(this);
+        modal.find('.modal-body #postid').val(postid);
     })
 </script>
