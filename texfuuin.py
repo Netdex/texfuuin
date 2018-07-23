@@ -1,3 +1,4 @@
+from gevent.pywsgi import WSGIServer
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
 import uuid
@@ -102,4 +103,8 @@ def rt_index():
 
 
 if __name__ == '__main__':
-    app.run()
+    if config['devel']:
+        app.run()
+    else:
+        http_server = WSGIServer(('', config['port']), app)
+        http_server.serve_forever()

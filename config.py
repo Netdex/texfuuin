@@ -2,6 +2,8 @@ config = {
     # application info
     'name': "texfuuin",
     'db_path': "./texfuuin-db.json",
+    'port': 5000,
+    'devel': False,
 
     # user management
     'default_user': "anonymous",
