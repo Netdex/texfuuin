@@ -8,9 +8,7 @@
             {% if not post.parent %}
                 <small><a href="{{ url_for('rt_post', post_id=post.id) }}">reply</a></small>
             {% endif %}
-            {% if post.tripcode %}
-                <small><a href="#" data-toggle="modal" data-target="#modal-edit" data-postid="{{ post.id }}">edit</a></small>
-            {% endif %}
+            <small><a href="#" data-toggle="modal" data-target="#modal-edit" data-postid="{{ post.id }}">edit</a></small>
         </span>
     </h6>
     <p class="card-text post-message">{{ post.message }}</p>
