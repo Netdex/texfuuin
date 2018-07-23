@@ -32,6 +32,7 @@ def rt_edit():
                                 post_id=uuid.UUID(post_obj['parent']) if post_obj.get('parent') else post_id,
                                 error='no-auth'))
 
+    # do action based on form param
     if u_action == 'delete':
         if not db.has_post(post_id):
             return redirect(url_for('rt_post', error='post-id'))

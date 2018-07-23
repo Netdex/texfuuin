@@ -32,6 +32,8 @@
     <div class="card my-4">
         <div class="card-body">
             <form action="{{ url_for('rt_new', post_id=thread.id if thread else None) }}" method="post">
+                <h3>Reply</h3>
+                <hr>
                 {% if thread is none %}
                     <div class="form-group">
                         <label for="title">Title</label>
