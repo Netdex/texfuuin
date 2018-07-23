@@ -22,7 +22,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
+                    <button type="submit" class="btn btn-danger" name="action" value="delete">
+                        <i class="fas fa-trash-alt"></i> Delete</button>
+                    <button type="submit" class="btn btn-primary" name="action" value="delete">
+                        <i class="fas fa-thumbtack"></i> Toggle Thread Pin</button>
                 </div>
             </form>
         </div>
@@ -37,3 +40,4 @@
         modal.find('.modal-body #postid').val(postid);
     })
 </script>
+

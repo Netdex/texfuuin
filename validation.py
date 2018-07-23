@@ -7,10 +7,10 @@ from config import config
 
 def validate_captcha(response):
     req = requests.post('https://www.google.com/recaptcha/api/siteverify',
-                       data = {
-                           'secret': config['recaptcha-secretkey'],
-                           'response': response
-                       })
+                        data={
+                            'secret': config['recaptcha-secretkey'],
+                            'response': response
+                        })
     resp = json.loads(req.text)
     if resp['success']:
         return True
