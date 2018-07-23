@@ -1,3 +1,8 @@
 {% macro tripcode(user, trip, admin) -%}
-    {{ user }}{% if trip %}<span class="trip{% if trip == admin %} trip-admin{% endif %}">#{{ trip }}</span>{% endif %}
+    {{ user }}
+    {% if trip %}
+        <span class="trip{% if trip == admin %} trip-admin{% endif %}">
+            {% if trip == admin %}##admin##{% else %}#{{ trip }}{% endif %}
+        </span>
+    {% endif %}
 {%- endmacro %}

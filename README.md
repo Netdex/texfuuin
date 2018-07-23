@@ -15,14 +15,10 @@ Currently in a prototyping phase.
 ### Media
 - No media, only text
 
-### Security
-- Auditable, test driven constructs
-
 ### User Frontend Schema
-- Vue.js
+- jQuery
 - Bootstrap
 
 ### Server Backend Schema
-- .NET Core
-- NancyFX
-- LiteDB
+- Flask
+- TinyDB

@@ -1,0 +1,38 @@
+{% from 'tripcode.html' import tripcode %}
+
+{% macro render_post_body(post, config) %}
+    <h6 class="card-subtitle">
+        <span class="post-user mr-4">{{ tripcode(post.user, post.tripcode, config.admin_trip) }}</span>
+        <span class="post-datetime text-muted">{{ post.datetime | ctime }}</span>
+        <span class="post-nav">
+            {% if not post.parent %}
+                <small><a href="{{ url_for('rt_post', post_id=post.id) }}">reply</a></small>
+            {% endif %}
+            {% if post.tripcode %}
+                <small><a href="#" data-toggle="modal" data-target="#modal-edit" data-postid="{{ post.id }}">edit</a></small>
+            {% endif %}
+        </span>
+    </h6>
+    <p class="card-text post-message">{{ post.message }}</p>
+{% endmacro %}
+
+{% macro render_thread(thread, config) -%}
+    <div class="thread my-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ url_for('rt_post', post_id=thread.id) }}"><span
+                            class="post-title mr-4">{{ thread.title }}</span></a>
+                </h5>
+                {{ render_post_body(thread, config) }}
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for reply in thread.replies %}
+                    <li class="list-group-item">
+                        {{ render_post_body(reply, config) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{%- endmacro %}

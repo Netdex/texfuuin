@@ -1,5 +1,13 @@
+import uuid
 
 from config import config
+
+
+def validate_uuid(uuid_str):
+    try:
+        return uuid.UUID(uuid_str)
+    except ValueError:
+        return None
 
 
 def str_constrain_len(s, limit):

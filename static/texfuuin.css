@@ -4,7 +4,7 @@
 
 .thread .post-user {
     color: forestgreen;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .thread .post-user .trip {
@@ -20,6 +20,6 @@
     font-weight: 700;
 }
 
-.thread .post-title-nav {
+.thread .post-nav {
     float: right;
 }
