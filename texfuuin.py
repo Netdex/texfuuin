@@ -30,7 +30,8 @@ def rt_edit():
 
     # find uppermost thread of current post
     parent_thread = uuid.UUID(post_obj['parent']) if post_obj.get('parent') else post_id
-    if post_obj['tripcode'] != triphash(u_tripcode) and post_obj['tripcode'] != config['admin_trip']:
+    uhash = triphash(u_tripcode)
+    if post_obj['tripcode'] != uhash and config['admin_trip'] != uhash:
         return redirect(url_for('rt_post',
                                 post_id=parent_thread,
                                 error='no-auth'))
